@@ -2,22 +2,22 @@
     <h1>Objeto Virtual Aprendizaje 2025</h1>
     <aside>
         <button>
-            <nuxt-link to="index.vue">
+            <nuxt-link to="/">
                 Inicio
             </nuxt-link>
         </button>
         <button>
-            <nuxt-link to="temas.vue">
+            <nuxt-link to="/temas">
                 Contenido
             </nuxt-link>
         </button>
         <button>
-            <nuxt-link to="actividades.vue">
+            <nuxt-link to="/actividades">
                 Actividades
             </nuxt-link>
         </button>
         <button>
-            <nuxt-link to="examen.vue">
+            <nuxt-link to="/examen">
                 Examen
             </nuxt-link>
         </button>
