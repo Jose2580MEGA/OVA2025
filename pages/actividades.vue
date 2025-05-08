@@ -2,7 +2,7 @@
     <h1>Actividades para hacer</h1>
     <aside>
         <button>
-            <nuxt-link to="/">
+            <nuxt-link to="/inicio">
                 Inicio
             </nuxt-link>
         </button>

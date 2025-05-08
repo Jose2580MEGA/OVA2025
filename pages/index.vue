@@ -1,25 +1,9 @@
 <template>
-    <h1>Objeto Virtual Aprendizaje 2025</h1>
-    <aside>
-        <button>
-            <nuxt-link to="/">
-                Inicio
-            </nuxt-link>
-        </button>
-        <button>
-            <nuxt-link to="/temas">
-                Contenido
-            </nuxt-link>
-        </button>
-        <button>
-            <nuxt-link to="/actividades">
-                Actividades
-            </nuxt-link>
-        </button>
-        <button>
-            <nuxt-link to="/examen">
-                Examen
-            </nuxt-link>
-        </button>
-    </aside>
+    <h1>Bienvenido a este Objeto Virtual Aprendizaj</h1>
+    <br><br><br>
+    <button>
+        <NuxtLink to="/inicio">
+            Siguiente
+        </NuxtLink>
+    </button>
 </template>
