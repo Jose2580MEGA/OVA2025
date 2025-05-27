@@ -1,6 +1,6 @@
 <template>
   <div class="main-interface">
-    <h1 class="main-title">Menú Principal</h1>
+    <h1 class="main-title">OVA Inglés</h1>
     <div class="menu-buttons">
       <button class="menu-button" @click="$emit('show-contents')">Contenidos</button>
       <button class="menu-button" @click="$emit('show-activities')">Actividades</button>
