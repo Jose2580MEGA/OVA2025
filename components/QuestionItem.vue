@@ -73,7 +73,7 @@ export default {
 
 .text-input:focus {
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  border-color: magenta;
+  box-shadow: 0 0 0 0.2rem rgba(255, 0, 255, 0.25);
 }
 </style>
