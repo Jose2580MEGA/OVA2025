@@ -38,12 +38,14 @@ export default {
   font-size: 1.15em;
   color: #333;
   margin-bottom: 15px;
+  font-family: "Eras ITC", sans-serif;
 }
 
 .options-container {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  font-family: "Eras ITC", sans-serif;
 }
 
 .option-label {

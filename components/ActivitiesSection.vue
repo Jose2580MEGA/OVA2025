@@ -100,6 +100,7 @@ export default {
   margin-bottom: 20px;
   color: rgb(0, 0, 0);
   font-size: 1.1em;
+  font-family: "Eras ITC", sans-serif;
 }
 
 .start-activity-button {

@@ -54,6 +54,7 @@ export default {
   margin-bottom: 15px;
   color: rgb(0, 0, 0);
   font-size: 1.05em;
+  font-family: "Eras ITC", sans-serif;
 }
 
 .content-list {
@@ -62,6 +63,7 @@ export default {
   padding-left: 0;
   margin-bottom: 20px;
   color: rgb(56, 56, 56);
+  font-family: "Eras ITC", sans-serif;
 }
 
 .content-list li {
