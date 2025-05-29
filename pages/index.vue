@@ -4,7 +4,7 @@
 
     <template v-else>
       <MainInterface
-        v-if="!showResults"
+        v-if="!showResults && !currentSection"
         @show-contents="currentSection = 'contents'"
         @show-activities="currentSection = 'activities'"
         @show-evaluation="currentSection = 'evaluation'"
@@ -34,10 +34,10 @@
 <script>
 import WelcomeScreen from '~/components/WelcomeScreen.vue';
 import MainInterface from '~/components/MainInterface.vue';
-import ContentsSection from '~/components/ContentsSection.vue';
+import ContentsSection from '~/components/ContentSection.vue';
 import ActivitiesSection from '~/components/ActivitiesSection.vue';
 import EvaluationSection from '~/components/EvaluationSection.vue';
-import ResultsScreen from '~/components/ResultsScreen.vue'; // Importar el nuevo componente
+import ResultsScreen from '~/components/ResultsScreen.vue';
 
 export default {
   components: {
@@ -67,7 +67,7 @@ export default {
       this.currentResults = {};
       this.currentSection = null;
       // Puedes optar por volver al menú principal o a la pantalla de bienvenida
-      // this.showMainInterface = false; // Para volver a la pantalla de bienvenida
+      // this.showMainInterface = false;
     },
   },
 };
