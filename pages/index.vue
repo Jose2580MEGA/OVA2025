@@ -34,7 +34,7 @@
 <script>
 import WelcomeScreen from '~/components/WelcomeScreen.vue';
 import MainInterface from '~/components/MainInterface.vue';
-import ContentsSection from '~/components/ContentSection.vue';
+import ContentsSection from '~/components/ContentsSection.vue';
 import ActivitiesSection from '~/components/ActivitiesSection.vue';
 import EvaluationSection from '~/components/EvaluationSection.vue';
 import ResultsScreen from '~/components/ResultsScreen.vue';
