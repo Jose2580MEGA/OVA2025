@@ -1,7 +1,6 @@
 <template>
-  <div>
-    <Nuxt />
-    <AppFooter />
+  <div class="layout-wrapper">
+    <Nuxt /> <AppFooter />
   </div>
 </template>
 
@@ -16,18 +15,12 @@ export default {
 </script>
 
 <style>
-/* layouts/default.vue */
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden; /* Evita el scroll global */
-}
-
-/* Asegúrate de que el contenido principal ocupe el espacio restante */
-#app { /* O el id de tu elemento raíz */
+.layout-wrapper {
+  /* Este ya no necesita flex-grow, ya que #__nuxt lo tiene. */
+  /* Solo asegúrate de que ocupe el 100% de su padre */
+  width: 100%;
+  height: 100%; /* Opcional, si quieres que ocupe todo el espacio vertical del padre */
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
 }
 </style>

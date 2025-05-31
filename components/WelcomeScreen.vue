@@ -1,6 +1,6 @@
 <template>
   <div class="welcome-container">
-    <h1>¡Bienvenido a OVA Inglés!</h1>
+    <h1>¡Bienvenido a este Objeto Virtual de Prendizaje</h1>
     <button @click="$emit('start')">Entrar</button>
   </div>
 </template>
@@ -20,7 +20,6 @@ export default {
   align-items: center;
   height: calc(100vh - 100px); /* Ajusta según el tamaño del footer */
   text-align: center;
-  background-color: #f0f8ff; /* Color de fondo suave */
   padding: 20px;
   box-sizing: border-box;
 }
@@ -42,6 +41,6 @@ export default {
 }
 
 .welcome-container button:hover {
-  background-color: rgb(0, 100, 200); /* Azul más oscuro al pasar el ratón */
+  background-color: rgb(255, 232, 0);
 }
 </style>

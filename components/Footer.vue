@@ -16,7 +16,7 @@ export default {
 .app-footer {
   width: 100%;
   padding: 20px 0;
-  background-color: #333; /* Color oscuro para el footer */
+  background-color: #333;
   color: white;
   text-align: center;
   display: flex;
@@ -24,10 +24,11 @@ export default {
   align-items: center;
   gap: 20px;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-  height: 60px; /* Altura fija para el footer */
+  height: 60px; /* Mantén una altura fija */
   box-sizing: border-box;
+  flex-shrink: 0; /* Evita que se encoja */
+  margin-top: auto; /* ¡Esto es crucial si está en el mismo contexto flex que el contenido principal! */
 }
-
 .app-footer p {
   margin: 0;
   font-size: 1em;

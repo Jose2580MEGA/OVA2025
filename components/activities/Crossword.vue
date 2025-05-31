@@ -39,18 +39,18 @@ export default {
       // O   L - -
       //     D - -
       solutionGrid: [
-        ['H', '', '', '', ''],
-        ['E', '', '', '', ''],
-        ['L', 'O', '', '', ''],
-        ['L', '', 'R', '', ''],
-        ['O', '', 'L', '', ''],
-        ['', '', 'D', '', ''],
+        ['', 'H', '', '', ''],
+        ['', 'E', '', 'E', ''],
+        ['', 'L', '', 'V', ''],
+        ['', 'L', '', 'I', ''],
+        ['W', 'O', 'R', 'L', 'D'],
+        ['', '', '', '', ''],
       ],
       grid: [],
       clues: [
-        '1. Saludo en inglés (Horizontal)',
-        '2. Lo contrario de "sí" (Horizontal)',
-        '3. El planeta donde vivimos (Vertical)',
+        'Saludo en inglés (Horizontal)',
+        'Lo contrario de "sí" (Horizontal)',
+        'El planeta donde vivimos (Vertical)',
       ],
     };
   },

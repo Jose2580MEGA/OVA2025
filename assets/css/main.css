@@ -13,5 +13,25 @@ h2 {
 }
 
 h3 {
-  color: rgb(255, 216, 0); /* Amarillo */
+  color: rgb(255, 232, 0); /* Amarillo */
+}
+
+button{
+  font-family: 'Eras ITC', sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  font-family: 'Eras ITC', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ¡Añade esto! Fuerza el flex-grow al contenedor principal de Nuxt */
+#__nuxt, #__layout { /* En Nuxt 3 es #__nuxt, en Nuxt 2 es #__layout */
+  flex-grow: 1;
+  display: flex; /* Asegura que sus hijos también puedan usar flexbox */
+  flex-direction: column; /* Para apilar el contenido y el footer */
 }

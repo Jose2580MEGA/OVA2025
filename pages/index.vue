@@ -170,9 +170,9 @@ export default {
 </script>
 
 <style>
-/* pages/index.vue */
 .app-container {
-  min-height: calc(100vh - 60px); /* Resta la altura del footer */
+  width: 100%;
+  min-height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -180,6 +180,8 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
+
+
 
 /* Transiciones */
 .fade-enter-active, .fade-leave-active {
