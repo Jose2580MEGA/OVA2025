@@ -1,6 +1,15 @@
 <template>
   <div class="welcome-container">
-    <h1>¡Bienvenido a este Objeto Virtual de Prendizaje</h1>
+    <h1>Bienvenido a este Objeto Virtual de Aprendizaje</h1>
+    <p>Hecho por:
+      <br>
+      <h2>Jose Gabriel Ortega Meza</h2>
+      <br>
+      Con permiso del Profesor:
+      <br>
+      <h2>Mauricio David LLorente Ricardo</h2>
+      <br><br>
+    </p>
     <button @click="$emit('start')">Entrar</button>
   </div>
 </template>
@@ -42,5 +51,6 @@ export default {
 
 .welcome-container button:hover {
   background-color: rgb(255, 232, 0);
+  color: black;
 }
 </style>
