@@ -1,7 +1,7 @@
 <template>
   <div class="main-interface-container">
     <header class="header-bar">
-      <h2>OVA Inglés</h2>
+      <h2>OVA English</h2>
       <nav class="navigation-bar">
         <button @click="selectOption('contents')">Contenidos</button>
         <button @click="selectOption('activities')">Actividades</button>
@@ -11,12 +11,30 @@
 
     <main class="content-area">
       <div v-if="currentMainSection === 'contents'" class="section-container">
-        <h3>Contenidos del Curso</h3>
-        <p>Pasado.</p>
+        <h3>Content</h3>
+        <p>Past Tense (Tiempo Pasado)</p>
         <ul>
-          <li>Verbos regulares</li>
-          <li>verbos irregulares</li>
-          <li>Did, Was y Were</li>
+          <li>Regular Verbs:
+            They are those which get a D, an ED, or an IED when they're in past tense.<br>
+            Examples:<br>
+            1- Use -> Used // 
+            2- Play -> Played // 
+            3- Study -> Studied
+          </li>
+          <li>Irregular Verbs:
+            They don't have a pattern and get small or big changes when they're in past tense.<br>
+            Examples:<br>
+            1- Eat -> Ate // 
+            2- Read -> Read (Pronounced as Red) // 
+            3- Buy -> Bought
+          </li>
+          <li>Did, Was and Were:
+            They get the same treatment as Do, Does, and Verb to Be.<br>
+            Examples:<br>
+            1- I Did / Didn't wash the dishes // 
+            2- He Was / Wasn't playing videogames // 
+            3- They Were / Weren't outside
+          </li>
         </ul>
       </div>
 
@@ -28,21 +46,21 @@
           <button @click="$emit('select-activity', 'Matching')">Matching</button>
           <button @click="$emit('select-activity', 'Crossword')">Crossword</button>
         </div>
-        <br><br><br><br><br><br>
+        <br><br><br><br><br><br><br>
       </div>
 
       <div v-else-if="currentMainSection === 'exam-confirm'" class="section-container">
         <h3>Confirmar Inicio de Examen</h3>
         <p>¿Estás seguro de que quieres iniciar el examen?</p>
         <button @click="$emit('start-exam')">Sí, Iniciar Examen</button>
-        <br><br><br><br><br><br>
+        <br><br><br><br><br><br><br>
       </div>
     </main>
   </div>
   
   <div class="internal-footer">
       <p>Proyecto de Cuarto Semestre de Licenciatura en Informatica en la Universidad de Cordoba</p>
-      <img src="" alt="Logo de la Universidad" class="university-logo-internal" />
+      <img src="https://www.unicordoba.edu.co/wp-content/uploads/2025/04/Escudo-unicordoba-2025.png" alt="Logo de la Universidad" class="university-logo-internal" />
   </div>
 </template>
 
@@ -103,7 +121,7 @@ export default {
 
 .content-area {
   flex-grow: 1;
-  padding: 30px;
+  padding: 20px;
   overflow-y: auto;
   display: flex;
   justify-content: center;
@@ -112,7 +130,7 @@ export default {
 
 .section-container {
   background-color: rgb(0, 145, 255);
-  padding: 5vh;
+  padding: 3vh;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
   max-width: 800px;
@@ -163,9 +181,9 @@ button:hover {
 
 .internal-footer {
   width: 100%;
-  padding: 15px 0; /* Un poco menos de padding que el footer global */
-  background-color: #444; /* Un color ligeramente diferente para diferenciar */
-  color: white;
+  padding: 15px 0;
+  background-color: rgb(200, 200, 200);
+  color: black;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -174,7 +192,6 @@ button:hover {
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
   height: 40px;
   flex-shrink: 0;
-  margin-top: 10vh;
 }
 
 .university-logo-internal {
