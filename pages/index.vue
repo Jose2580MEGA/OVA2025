@@ -4,10 +4,13 @@
       <component
         :is="currentScreenComponent"
         @start="showMainInterface"
+        @select-main-section="handleMainSectionSelection" 
         @select-activity="startActivity"
         @start-exam="startExam"
         @activity-completed="showResults"
-        :key="currentScreen"
+        :currentMainSectionProp="currentMainSectionInMain" 
+        :activityData="getCurrentActivityData" 
+        :key="currentScreenComponent === 'MainInterface' ? currentMainSectionInMain : currentScreen"
       />
     </transition>
 
@@ -50,6 +53,11 @@
         </button>
       </div>
     </div>
+    
+    <div class="internal-footer">
+      <p>Proyecto de Cuarto Semestre de Licenciatura en Informatica en la Universidad de Cordoba</p>
+      <img src="https://www.unicordoba.edu.co/wp-content/uploads/2025/04/Escudo-unicordoba-2025.png" alt="Logo de la Universidad" class="university-logo-internal" />
+    </div>
   </div>
 </template>
 
@@ -72,6 +80,7 @@ export default {
     return {
       currentScreen: 'welcome', // 'welcome', 'main', 'activity', 'exam'
       currentActivity: null, // 'FillInTheBlanks', 'Matching', 'Crossword'
+      currentMainSectionInMain: 'contents', // Controla la sección interna de MainInterface
       showResultsScreen: false,
       results: {
         activityName: '',
@@ -79,67 +88,126 @@ export default {
         correctAnswers: 0,
       },
       showExamScreen: false,
-      examQuestionsData: [ // Fácil de modificar
+      examQuestionsData: [
         { id: 1, question: "What is the past tense of 'go'?", answer: "went" },
-        { id: 2, question: "Spell the word: 'knowledge'", answer: "knowledge" },
-        { id: 3, question: "Translate 'casa' to English.", answer: "house" },
-        { id: 4, question: "Fill in the blank: 'I ___ to the store yesterday.'", answer: "went" },
-        { id: 5, question: "What is the plural of 'child'?", answer: "children" },
-        // Agrega o quita preguntas aquí fácilmente
+        { id: 2, question: "What did you do last night?", answer: "slept" },
+        { id: 3, question: "What did you do in class?", answer: "learned" },
+        { id: 4, question: "Fill in the blank: 'I ___ videogames with a friend yesterday.'", answer: "played" },
+        { id: 5, question: "When something breaks, now it's...", answer: "broken" },
+        { id: 6, question: "What is the past tense of 'eat'?", answer: "ate" },
+        { id: 7, question: "Fill in the blank: 'I was tired when i ___ home from the gym.'", answer: "came" },
+        { id: 8, question: "What did you do at the bridge?", answer: "walked" },
+        { id: 9, question: "Fill in the blank: 'I ___ at that amusement park last week.'", answer: "enjoyed" },
+        { id: 10, question: "When something gets dirty it has to be...", answer: "washed" },
       ],
-      examQuestions: [], // Preguntas seleccionadas para el examen
+      examQuestions: [],
       examAnswers: [],
       currentQuestionIndex: 0,
       examResults: {
         totalQuestions: 0,
         correctAnswers: 0,
       },
+      activitiesData: {
+        FillInTheBlanks: [
+          { id: 1, sentence: "I ___ (go) to the park yesterday.", answer: "went" },
+          { id: 2, sentence: "She ___ (eat) dinner early.", answer: "ate" },
+          { id: 3, sentence: "They ___ (study) for the exam.", answer: "studied" },
+          { id: 4, sentence: "He ___ (have) to leave.", answer: "had" },
+          { id: 5, sentence: "You ___ (do) have to see that.", answer: "didn't" },
+        ],
+        Matching: [
+          { id: 1, word: "Slept", answerLetter: "a" },
+          { id: 2, word: "Watched", answerLetter: "b" },
+          { id: 3, word: "Thought", answerLetter: "c" },
+          { id: 4, word: "Drank", answerLetter: "d" },
+          { id: 5, word: "Folded", answerLetter: "e" }
+        ],
+        MatchingDefinitions: [ 
+          { letter: "a", definition: "Past tense of 'Sleep'" },
+          { letter: "b", definition: "Past tense of 'Watch'" },
+          { letter: "c", definition: "Past tense of 'Think'" },
+          { letter: "d", definition: "Past tense of 'Drink'" },
+          { letter: "e", definition: "Past tense of 'Fold'" }
+        ],
+        Crossword: []
+      }
     };
   },
   computed: {
     currentScreenComponent() {
       if (this.currentScreen === 'welcome') {
-        return 'WelcomeScreen';
-      } else if (this.currentScreen === 'main') {
-        return 'MainInterface';
+        return WelcomeScreen;
       } else if (this.currentScreen === 'activity' && this.currentActivity) {
-        return this.currentActivity;
-      } else if (this.currentScreen === 'exam') {
-        // En un examen real, aquí renderizarías un componente de examen
-        // Por ahora, lo manejamos con v-if para el overlay
-        return 'MainInterface'; // Sigue mostrando MainInterface detrás del overlay
+        switch (this.currentActivity) {
+          case 'FillInTheBlanks':
+            return FillInTheBlanks;
+          case 'Matching':
+            return Matching;
+          case 'Crossword':
+            return Crossword;
+          default:
+            console.warn(`Actividad desconocida: ${this.currentActivity}. Volviendo a MainInterface.`);
+            return MainInterface;
+        }
+      } else {
+        return MainInterface;
       }
-      return null;
     },
+    getCurrentActivityData() {
+        if (this.currentActivity === 'Matching') {
+            console.log('Index.vue: Pasando datos para Matching:', {
+                words: this.activitiesData.Matching,
+                definitions: this.activitiesData.MatchingDefinitions
+            });
+            return {
+                words: this.activitiesData.Matching,
+                definitions: this.activitiesData.MatchingDefinitions
+            };
+        } else if (this.currentActivity && this.activitiesData[this.currentActivity]) {
+            console.log(`Index.vue: Pasando datos para ${this.currentActivity}:`, this.activitiesData[this.currentActivity]);
+            return this.activitiesData[this.currentActivity];
+        }
+        console.log('Index.vue: No hay datos de actividad para pasar o actividad no reconocida.');
+        return null;
+    }
   },
   methods: {
     showMainInterface() {
       this.currentScreen = 'main';
+      this.currentMainSectionInMain = 'contents';
+    },
+    handleMainSectionSelection(section) {
+      this.currentMainSectionInMain = section;
+      this.currentScreen = 'main';
     },
     startActivity(activityName) {
       this.currentActivity = activityName;
+      console.log('Index.vue: Iniciando actividad:', activityName);
       this.currentScreen = 'activity';
     },
     showResults(activityResults) {
       this.results = activityResults;
       this.showResultsScreen = true;
+      // Ajuste para el overlay del examen, que también usa showResults
+      if (activityResults.activityName === 'Examen') {
+        this.showExamScreen = false; // Cierra el overlay del examen
+      }
     },
     hideResults() {
       this.showResultsScreen = false;
-      this.currentActivity = null; // Reinicia la actividad seleccionada
-      this.currentScreen = 'main'; // Vuelve a la interfaz principal
+      this.currentActivity = null;
+      this.currentScreen = 'main';
+      this.currentMainSectionInMain = 'contents';
     },
     startExam() {
-      // Baraja las preguntas y selecciona un número si es necesario
       this.examQuestions = this.examQuestionsData.sort(() => 0.5 - Math.random());
       this.examAnswers = Array(this.examQuestions.length).fill('');
       this.currentQuestionIndex = 0;
       this.examResults = { totalQuestions: this.examQuestions.length, correctAnswers: 0 };
       this.showExamScreen = true;
-      this.currentScreen = 'exam'; // Cambia el estado a 'exam' para el componente dinámico (aunque es un overlay)
+      this.currentScreen = 'exam';
     },
     nextQuestion() {
-      // Valida la respuesta actual antes de avanzar (opcional)
       this.currentQuestionIndex++;
       if (this.currentQuestionIndex >= this.examQuestions.length) {
         this.finishExam();
@@ -154,25 +222,26 @@ export default {
       });
       this.examResults.correctAnswers = correctExamAnswers;
 
-      // Muestra los resultados del examen en una pantalla de resultados separada o en el mismo overlay
+      // Usar showResults para mostrar el resultado del examen
       this.showResults({
         activityName: 'Examen',
         totalQuestions: this.examResults.totalQuestions,
         correctAnswers: this.examResults.correctAnswers,
       });
 
-      this.showExamScreen = false;
-      this.currentQuestionIndex = 0; // Reinicia para futuros exámenes
-      this.examAnswers = []; // Limpia las respuestas
+      // No se oculta el overlay aquí, lo hace showResults si activityName es 'Examen'
+      this.currentQuestionIndex = 0;
+      this.examAnswers = [];
     },
   },
 };
 </script>
 
 <style>
+/* ... (Tus estilos de Index.vue sin cambios adicionales) ... */
 .app-container {
   width: 100%;
-  min-height: 100%;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -181,9 +250,6 @@ export default {
   box-sizing: border-box;
 }
 
-
-
-/* Transiciones */
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.5s ease;
 }
@@ -191,7 +257,6 @@ export default {
   opacity: 0;
 }
 
-/* Overlay de resultados y examen */
 .results-overlay, .exam-overlay {
   position: fixed;
   top: 0;
@@ -224,7 +289,7 @@ export default {
 .results-card h3, .exam-card h3 {
   margin-bottom: 25px;
   font-size: 2em;
-  color: rgb(255, 0, 255); /* Magenta */
+  color: rgb(255, 0, 255);
 }
 
 .results-card p, .exam-card p {
@@ -234,14 +299,14 @@ export default {
 }
 
 .results-card strong {
-  color: rgb(0, 145, 255); /* Azul */
+  color: rgb(0, 145, 255);
 }
 
 .results-card button, .exam-card button {
   margin-top: 30px;
   padding: 15px 30px;
   font-size: 1.2em;
-  background-color: rgb(255, 216, 0); /* Amarillo */
+  background-color: rgb(255, 216, 0);
   color: #333;
   border: none;
   border-radius: 8px;
@@ -250,7 +315,7 @@ export default {
 }
 
 .results-card button:hover, .exam-card button:hover {
-  background-color: rgb(200, 170, 0); /* Amarillo más oscuro */
+  background-color: rgb(200, 170, 0);
 }
 
 .exam-input {
@@ -284,5 +349,26 @@ export default {
 
 .exam-nav-button:hover {
   background-color: rgb(0, 100, 200);
+}
+
+.internal-footer {
+  width: 100%;
+  padding: 15px 0;
+  background-color: rgb(200, 200, 200);
+  color: black;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  height: 40px;
+  flex-shrink: 0;
+  margin-top: auto;
+}
+
+.university-logo-internal {
+  height: 35px;
+  object-fit: contain;
 }
 </style>

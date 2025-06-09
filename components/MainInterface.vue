@@ -3,19 +3,19 @@
     <header class="header-bar">
       <h2>OVA English</h2>
       <nav class="navigation-bar">
-        <button @click="selectOption('contents')">Contenidos</button>
-        <button @click="selectOption('activities')">Actividades</button>
-        <button @click="selectOption('exam-confirm')">Iniciar Examen</button>
+        <button @click="selectOptionAndEmit('contents')">Contenidos</button>
+        <button @click="selectOptionAndEmit('activities')">Actividades</button>
+        <button @click="selectOptionAndEmit('exam-confirm')">Iniciar Examen</button>
       </nav>
     </header>
 
     <main class="content-area">
-      <div v-if="currentMainSection === 'contents'" class="section-container">
+      <div v-if="currentMainSectionProp === 'contents'" class="section-container">
         <h3>Content</h3>
         <p>Past Tense (Tiempo Pasado)</p>
         <ul>
           <li>Regular Verbs:
-            They are those which get a D, an ED, or an IED when they're in past tense.<br>
+            Theyget a D, an ED, or an IED when they're in past tense.<br>
             Examples:<br>
             1- Use -> Used // 
             2- Play -> Played // 
@@ -38,7 +38,7 @@
         </ul>
       </div>
 
-      <div v-else-if="currentMainSection === 'activities'" class="section-container">
+      <div v-else-if="currentMainSectionProp === 'activities'" class="section-container">
         <h3>Selecciona una Actividad</h3>
         <br><br>
         <div class="activity-buttons">
@@ -49,7 +49,7 @@
         <br><br><br><br><br><br><br>
       </div>
 
-      <div v-else-if="currentMainSection === 'exam-confirm'" class="section-container">
+      <div v-else-if="currentMainSectionProp === 'exam-confirm'" class="section-container">
         <h3>Confirmar Inicio de Examen</h3>
         <p>¿Estás seguro de que quieres iniciar el examen?</p>
         <button @click="$emit('start-exam')">Sí, Iniciar Examen</button>
@@ -57,35 +57,35 @@
       </div>
     </main>
   </div>
-  
-  <div class="internal-footer">
-      <p>Proyecto de Cuarto Semestre de Licenciatura en Informatica en la Universidad de Cordoba</p>
-      <img src="https://www.unicordoba.edu.co/wp-content/uploads/2025/04/Escudo-unicordoba-2025.png" alt="Logo de la Universidad" class="university-logo-internal" />
-  </div>
-</template>
+  </template>
 
 <script>
 export default {
   name: 'MainInterface',
-  data() {
-    return {
-      currentMainSection: 'contents', // 'contents', 'activities', 'exam-confirm'
-    };
+  props: {
+    // Recibe la sección principal a mostrar desde Index.vue
+    currentMainSectionProp: {
+      type: String,
+      default: 'contents' // Valor por defecto
+    }
   },
+  // Elimina cualquier data local como `currentMainSection`
+  // Elimina cualquier `watch` que intentara modificar `currentMainSection`
   methods: {
-    selectOption(option) {
-      this.currentMainSection = option;
+    // Emite un evento para que Index.vue sepa qué sección principal mostrar
+    selectOptionAndEmit(option) {
+      this.$emit('select-main-section', option);
     },
   },
 };
 </script>
 
 <style>
-/* components/MainInterface.vue */
+/* Tus estilos de MainInterface.vue (sin el footer) */
 .main-interface-container {
   display: flex;
   flex-direction: column;
-  flex-grow: 1; /* ¡Este es el que debe crecer y empujar el contenido hacia abajo! */
+  flex-grow: 1; /* Permite que el MainInterface ocupe todo el espacio disponible */
   box-sizing: border-box;
   width: 100%;
 }
@@ -96,7 +96,9 @@ export default {
   align-items: center;
   padding: 15px 30px;
   background-color: black;
+  color: white; /* Asegúrate de que el texto del h2 sea blanco */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0; /* Para que no se encoja */
 }
 
 .header-bar h2 {
@@ -120,9 +122,9 @@ export default {
 }
 
 .content-area {
-  flex-grow: 1;
+  flex-grow: 1; /* Permite que el área de contenido crezca */
   padding: 20px;
-  overflow-y: auto;
+  overflow-y: auto; /* Permite el scroll si el contenido es demasiado largo */
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -163,9 +165,9 @@ export default {
   font-size: 1.05em;
 }
 
-button {
+button { /* Esto es un estilo global que afecta a todos los botones */
   background-color: rgb(0, 145, 255);
-  color: #333;
+  color: #333; /* Asegúrate de que el color del texto sea visible */
   padding: 15px 25px;
   margin: 0 15px;
   border: none;
@@ -177,25 +179,5 @@ button {
 
 button:hover {
   background-color: magenta;
-}
-
-.internal-footer {
-  width: 100%;
-  padding: 15px 0;
-  background-color: rgb(200, 200, 200);
-  color: black;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-  height: 40px;
-  flex-shrink: 0;
-}
-
-.university-logo-internal {
-  height: 35px; /* Ajusta tamaño */
-  object-fit: contain;
 }
 </style>
