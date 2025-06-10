@@ -1,15 +1,15 @@
 <template>
   <div class="welcome-container">
     <h1>Bienvenido a este Objeto Virtual de Aprendizaje</h1>
-    <p>Hecho por:
+    <br><br>
+    <p>Hecho por:</p>
       <br>
       <h2>Jose Gabriel Ortega Meza</h2>
       <br>
-      Con permiso del Profesor:
+      <p>Con permiso del Profesor:</p>
       <br>
       <h2>Mauricio David LLorente Ricardo</h2>
       <br><br>
-    </p>
     <button @click="$emit('start')">Entrar</button>
   </div>
 </template>
@@ -21,7 +21,6 @@ export default {
 </script>
 
 <style>
-/* components/WelcomeScreen.vue */
 .welcome-container {
   display: flex;
   flex-direction: column;

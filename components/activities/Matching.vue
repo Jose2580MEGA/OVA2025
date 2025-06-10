@@ -1,15 +1,7 @@
 <template>
   <div class="activity-container matching-activity">
-    <h2>Actividad de Matching (Nuevo Formato)</h2>
+    <h2>Matching</h2>
     <p>Escribe la letra de la definición correcta junto a cada palabra.</p>
-
-    <div style="background-color: lightcoral; padding: 10px; margin-bottom: 20px; border-radius: 5px; color: white;">
-      <p>DEBUG: Contenido de activityData que recibe este componente:</p>
-      <pre style="color: white; text-align: left;">{{ JSON.stringify(activityData, null, 2) }}</pre>
-      <p v-if="!activityData || !activityData.words || activityData.words.length === 0">
-        ¡ADVERTENCIA! activityData está vacío o es inválido.
-      </p>
-    </div>
 
     <div class="matching-grid" v-if="words.length > 0 && shuffledDefinitions.length > 0">
       <div class="left-column">
@@ -244,7 +236,7 @@ button {
 }
 
 button:hover {
-  background-color: rgb(200, 0, 200);
+  background-color: rgb(0, 145, 255);
 }
 
 p.feedback {

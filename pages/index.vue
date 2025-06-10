@@ -113,7 +113,7 @@ export default {
           { id: 2, sentence: "She ___ (eat) dinner early.", answer: "ate" },
           { id: 3, sentence: "They ___ (study) for the exam.", answer: "studied" },
           { id: 4, sentence: "He ___ (have) to leave.", answer: "had" },
-          { id: 5, sentence: "You ___ (do) have to see that.", answer: "didn't" },
+          { id: 5, sentence: "You ___ (do) that.", answer: "did" },
         ],
         Matching: [
           { id: 1, word: "Slept", answerLetter: "a" },
@@ -315,7 +315,7 @@ export default {
 }
 
 .results-card button:hover, .exam-card button:hover {
-  background-color: rgb(200, 170, 0);
+  background-color: rgb(0, 145, 255);
 }
 
 .exam-input {
@@ -348,7 +348,7 @@ export default {
 }
 
 .exam-nav-button:hover {
-  background-color: rgb(0, 100, 200);
+  background-color: magenta;
 }
 
 .internal-footer {
